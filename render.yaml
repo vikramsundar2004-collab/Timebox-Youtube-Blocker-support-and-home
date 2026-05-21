@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: timebox-youtube-blocker-support
+    runtime: static
+    buildCommand: echo "Static support site ready"
+    staticPublishPath: ./site
+    autoDeploy: true
