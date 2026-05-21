@@ -3,86 +3,119 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Timebox YouTube Blocker Support</title>
-    <meta name="description" content="Home and support site for Timebox YouTube Blocker, a Chrome extension that blocks YouTube by default and allows three 20-minute breaks per day.">
+    <title>Download Timebox YouTube Blocker</title>
+    <meta name="description" content="Download and install Timebox YouTube Blocker, a Chrome extension that blocks YouTube by default and allows three 20-minute breaks per day.">
     <link rel="icon" href="assets/icon128.png">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="Timebox YouTube Blocker home">
         <img src="assets/icon128.png" alt="">
         <span>Timebox YouTube Blocker</span>
       </a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="download.html">Download</a>
+        <a href="#download">Download</a>
+        <a href="#install">Install</a>
+        <a href="print-qr.html">Print QR</a>
         <a href="support.html">Support</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="#install">Install help</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Support and setup</p>
-          <h1>Block YouTube by default.</h1>
-          <p>Timebox YouTube Blocker keeps YouTube locked until you choose one of your three daily 20-minute breaks. This site gives customers a simple home base for installation, troubleshooting, and privacy details.</p>
-          <div class="actions">
-            <a class="button" href="download.html">Download extension</a>
-            <a class="button secondary" href="#install">View install steps</a>
+      <section id="download" class="download-zone">
+        <div class="download-copy">
+          <img class="promo-image" src="assets/small-promo.png" alt="Timebox YouTube Blocker promotional card.">
+          <h1>Download Timebox YouTube Blocker</h1>
+          <p>Install the Chrome extension, then use three intentional 20-minute YouTube breaks per day. The Windows installer ZIP is the fastest path for a demo computer.</p>
+          <div class="download-actions" aria-label="Download options">
+            <a class="button primary" href="downloads/install-timebox-youtube-blocker-windows.zip" download>Download Windows installer ZIP</a>
+            <a class="button secondary" href="downloads/timebox-youtube-blocker.zip" download>Download ZIP manually</a>
           </div>
+          <p class="download-note">Version 1.0.0. Chrome requires one manual step: turn on Developer mode, then choose Load unpacked.</p>
         </div>
-        <figure class="hero-card">
-          <img src="assets/popup-states.png" alt="Timebox YouTube Blocker popup showing blocked and active break states.">
-        </figure>
+
+        <aside class="scan-panel" aria-label="QR code for this download page">
+          <img class="qr-image" src="assets/timebox-download-qr.png" alt="QR code for the Timebox YouTube Blocker download page.">
+          <div>
+            <h2>Print this for your room</h2>
+            <p>People can scan the code, open the public Render page, and download the extension without signing in to GitHub.</p>
+            <a class="text-link" href="print-qr.html">Open printable QR sheet</a>
+          </div>
+        </aside>
       </section>
 
       <section id="install" class="section">
-        <p class="eyebrow">Install help</p>
-        <h2>How the blocker works</h2>
-        <p class="section-lead">YouTube starts blocked. A break unlocks YouTube for 20 minutes. You get three breaks per local day, and the limit resets the next day.</p>
-        <ol class="steps">
-          <li>
-            <span class="step-number">1</span>
-            <div>
-              <h3>Install the Chrome extension</h3>
-              <p>Install Timebox YouTube Blocker from the Chrome Web Store after approval, or download the ZIP and load the unpacked extension folder in Chrome developer mode.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-number">2</span>
-            <div>
-              <h3>Open YouTube</h3>
-              <p>The extension redirects YouTube to the blocked page automatically when no break is active.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-number">3</span>
-            <div>
-              <h3>Use a break only when needed</h3>
-              <p>Click "Give me a break" to unlock YouTube for 20 minutes. The timer keeps running even if the popup closes.</p>
-            </div>
-          </li>
-        </ol>
+        <div class="section-heading">
+          <h2>Install in Chrome</h2>
+          <p>Choose the installer ZIP if you are on Windows. Use the manual ZIP if your browser blocks command files or if you want to inspect the package first.</p>
+        </div>
+
+        <div class="install-grid">
+          <article class="install-card">
+            <h3>Windows helper</h3>
+            <ol>
+              <li>Download and extract <strong>install-timebox-youtube-blocker-windows.zip</strong>.</li>
+              <li>Open <strong>install-timebox-youtube-blocker.cmd</strong>.</li>
+              <li>If Windows asks, choose <strong>Run anyway</strong> only if you trust this project.</li>
+              <li>The helper opens <strong>chrome://extensions</strong> and the extracted folder.</li>
+              <li>Turn on <strong>Developer mode</strong>.</li>
+              <li>Click <strong>Load unpacked</strong> and select <strong>TimeboxYouTubeBlocker</strong>.</li>
+            </ol>
+          </article>
+
+          <article class="install-card">
+            <h3>Manual ZIP</h3>
+            <ol>
+              <li>Download <strong>timebox-youtube-blocker.zip</strong>.</li>
+              <li>Right-click the ZIP and choose <strong>Extract All</strong>.</li>
+              <li>Open Chrome and go to <strong>chrome://extensions</strong>.</li>
+              <li>Turn on <strong>Developer mode</strong>.</li>
+              <li>Click <strong>Load unpacked</strong> and select the extracted folder.</li>
+            </ol>
+          </article>
+        </div>
       </section>
 
-      <section class="section">
-        <p class="eyebrow">What customers ask</p>
-        <h2>Fast answers</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>Can I add more time?</h3>
-            <p>No. Breaks cannot be stacked or extended. When a break ends, YouTube is blocked again.</p>
-          </article>
-          <article class="card">
-            <h3>What happens after three breaks?</h3>
-            <p>The blocker enters its daily lockout state. YouTube stays blocked until the next local-day reset.</p>
-          </article>
-          <article class="card">
-            <h3>Does it collect browsing data?</h3>
-            <p>No. Break state is stored locally in Chrome. The extension does not send browsing history to a server.</p>
-          </article>
+      <section class="section product-proof">
+        <div class="section-heading">
+          <h2>What users see</h2>
+          <p>YouTube starts blocked. A break unlocks YouTube for 20 minutes, and the daily limit resets the next day.</p>
+        </div>
+        <div class="media-grid">
+          <figure>
+            <img src="assets/popup-states.png" alt="The extension popup showing blocked and active break states.">
+            <figcaption>Popup states</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/blocked-page.png" alt="The YouTube blocked page shown by the extension.">
+            <figcaption>Blocked page</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section details-section">
+        <div>
+          <h2>Files served by this page</h2>
+          <p>The Render static site publishes the HTML pages, screenshots, QR assets, Windows helper, and extension ZIP from this repository.</p>
+        </div>
+        <div class="file-list" aria-label="Download file list">
+          <a href="downloads/install-timebox-youtube-blocker-windows.zip" download>
+            <span>Windows installer</span>
+            <strong>.zip</strong>
+          </a>
+          <a href="downloads/install-timebox-youtube-blocker.cmd" download>
+            <span>Direct helper</span>
+            <strong>.cmd</strong>
+          </a>
+          <a href="downloads/timebox-youtube-blocker.zip" download>
+            <span>Extension package</span>
+            <strong>.zip</strong>
+          </a>
+          <a href="print-qr.html">
+            <span>Printable handout</span>
+            <strong>QR</strong>
+          </a>
         </div>
       </section>
     </main>
@@ -90,7 +123,8 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <span>Timebox YouTube Blocker</span>
-        <a href="download.html">Download</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
       </div>
     </footer>
   </body>

@@ -1,55 +1,79 @@
-# Timebox YouTube Blocker
+# Timebox YouTube Blocker Download Site
 
-Use this page to download and install the Timebox YouTube Blocker Chrome extension for the class demo.
+This repository hosts the public download and support site for Timebox YouTube Blocker.
 
-## Fast Download
+The site is a static Render deployment. Visitors can:
 
-**Best option for Windows:**
+- Download the Windows installer ZIP.
+- Download the extension ZIP manually.
+- Read the Chrome installation steps.
+- Print a QR code handout for the public download page.
+- Open support and privacy pages.
 
-[Download the Windows install helper](https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/install-timebox-youtube-blocker.cmd)
+## Public URL
 
-**Backup option:**
-
-[Download the extension ZIP](https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/timebox-youtube-blocker.zip)
-
-## Easiest Windows Install
-
-1. Click **Download the Windows install helper** above.
-2. Open the downloaded file named `install-timebox-youtube-blocker.cmd`.
-3. If Windows asks for confirmation, choose **Run anyway** only if you trust this class project.
-4. The helper downloads the extension, extracts it, opens Chrome's extension page, and opens the exact folder to select.
-5. In Chrome, turn on **Developer mode** in the top-right.
-6. Click **Load unpacked**.
-7. Select the folder named `TimeboxYouTubeBlocker` that the helper opened.
-8. Open `youtube.com` to test it.
-
-## Manual Install
-
-Use this if the helper is blocked by your browser or computer.
-
-1. Click **Download the extension ZIP** above.
-2. Right-click the downloaded ZIP and choose **Extract All**.
-3. Open Chrome and go to:
+The Render service is configured for this URL:
 
 ```text
-chrome://extensions
+https://timebox-youtube-blocker-support.onrender.com/
 ```
 
-4. Turn on **Developer mode** in the top-right.
-5. Click **Load unpacked**.
-6. Select the extracted extension folder.
-7. Open `youtube.com` to test it.
+The QR assets in `site/assets` point to that URL. If you rename the Render service and get a different `onrender.com` URL, regenerate the QR code and update the URL in `site/print-qr.html`.
 
-## What It Does
+## Direct downloads
 
-Timebox YouTube Blocker blocks YouTube by default. You get three 20-minute breaks per day. After all three breaks are used, YouTube stays blocked until the next daily reset.
+- [Windows installer ZIP](https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/install-timebox-youtube-blocker-windows.zip)
+- [Manual extension ZIP](https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/timebox-youtube-blocker.zip)
 
-## Support Pages
+Use the installer ZIP instead of linking directly to the `.cmd` helper. GitHub serves `.cmd` files as plain text in the browser, which is why the helper can appear as code instead of downloading.
 
-- [Download page](site/download.html)
-- [Support page](site/support.html)
-- [Privacy policy](site/privacy.html)
+## Important files
 
-## Chrome Web Store
+```text
+site/index.html
+site/download.html
+site/print-qr.html
+site/downloads/install-timebox-youtube-blocker.cmd
+site/downloads/install-timebox-youtube-blocker-windows.zip
+site/downloads/timebox-youtube-blocker.zip
+site/assets/timebox-download-qr.png
+site/assets/timebox-download-qr-print-sheet.pdf
+render.yaml
+```
 
-The Chrome Web Store version is being prepared separately. Google review can take time, so this page gives a direct install option for the class demo.
+## Local preview
+
+From this repository:
+
+```powershell
+cd "C:\Users\vikra\OneDrive\Documents\Timebox-Youtube-Blocker-support-and-home"
+python -m http.server 8080 --directory site
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8080/
+```
+
+## Render deployment
+
+Use the Blueprint in `render.yaml`.
+
+1. Commit and push this repo to GitHub.
+2. Open Render and choose **New > Blueprint**.
+3. Connect this repository:
+
+```text
+https://github.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home
+```
+
+4. Render reads `render.yaml` from the repo root.
+5. Apply the Blueprint.
+6. After the deploy is live, open:
+
+```text
+https://timebox-youtube-blocker-support.onrender.com/
+```
+
+There are no environment variables, databases, build artifacts, or server processes. Render serves the contents of `site/`.

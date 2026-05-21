@@ -2,36 +2,74 @@
 setlocal
 title Install Timebox YouTube Blocker
 
+set "TIMEBOX_ZIP_URL=https://timebox-youtube-blocker-support.onrender.com/downloads/timebox-youtube-blocker.zip"
+set "TIMEBOX_FALLBACK_ZIP_URL=https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/timebox-youtube-blocker.zip"
+set "TIMEBOX_INSTALL_ROOT=%LOCALAPPDATA%\TimeboxYouTubeBlocker"
+set "TIMEBOX_ZIP_PATH=%TEMP%\timebox-youtube-blocker.zip"
+
 echo Timebox YouTube Blocker installer
 echo.
 echo This helper downloads and extracts the extension, then opens Chrome's extension page.
 echo Chrome still requires you to click "Load unpacked" and select the extracted folder.
 echo.
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+powershell -NoProfile -Command ^
   "$ErrorActionPreference='Stop';" ^
-  "$zipUrl='https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/timebox-youtube-blocker.zip';" ^
-  "$installRoot=Join-Path $env:LOCALAPPDATA 'TimeboxYouTubeBlocker';" ^
-  "$zipPath=Join-Path $env:TEMP 'timebox-youtube-blocker.zip';" ^
+  "$ProgressPreference='SilentlyContinue';" ^
+  "$zipUrl=$env:TIMEBOX_ZIP_URL;" ^
+  "$fallbackZipUrl=$env:TIMEBOX_FALLBACK_ZIP_URL;" ^
+  "$zipPath=$env:TIMEBOX_ZIP_PATH;" ^
+  "$installRoot=$env:TIMEBOX_INSTALL_ROOT;" ^
   "Write-Host 'Downloading extension package...';" ^
-  "Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath;" ^
+  "try { Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath } catch { Write-Host 'Primary download failed. Trying backup download...'; Invoke-WebRequest -Uri $fallbackZipUrl -OutFile $zipPath };" ^
   "if (Test-Path $installRoot) { Remove-Item -LiteralPath $installRoot -Recurse -Force };" ^
   "New-Item -ItemType Directory -Force -Path $installRoot | Out-Null;" ^
   "Write-Host 'Extracting extension files...';" ^
   "Expand-Archive -LiteralPath $zipPath -DestinationPath $installRoot -Force;" ^
-  "$chromeCandidates=@(\"$env:ProgramFiles\Google\Chrome\Application\chrome.exe\", \"${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe\");" ^
-  "$chrome=$chromeCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1;" ^
-  "if ($chrome) { Start-Process -FilePath $chrome -ArgumentList 'chrome://extensions' } else { Start-Process 'chrome://extensions' };" ^
-  "Start-Process explorer.exe $installRoot;" ^
-  "Write-Host '';" ^
-  "Write-Host 'NEXT STEPS:';" ^
-  "Write-Host '1. In Chrome, turn on Developer mode in the top-right.';" ^
-  "Write-Host '2. Click Load unpacked.';" ^
-  "Write-Host '3. Select this folder:';" ^
-  "Write-Host $installRoot;" ^
-  "Write-Host '4. Open youtube.com to test the blocker.';"
+  "Write-Host 'Extension files installed successfully.';"
 
+if errorlevel 1 (
+  echo.
+  echo Install failed. Please try the manual ZIP install from the download page.
+  echo.
+  if "%TIMEBOX_INSTALLER_SKIP_PAUSE%"=="1" exit /b 1
+  pause
+  exit /b 1
+)
+
+if "%TIMEBOX_INSTALLER_SKIP_OPEN%"=="1" (
+  echo Skipping auto-open because TIMEBOX_INSTALLER_SKIP_OPEN=1.
+) else (
+  call :open_chrome_extensions
+  start "" "%TIMEBOX_INSTALL_ROOT%"
+)
+
+echo.
+echo NEXT STEPS:
+echo 1. In Chrome, turn on Developer mode in the top-right.
+echo 2. Click Load unpacked.
+echo 3. Select this folder:
+echo %TIMEBOX_INSTALL_ROOT%
+echo 4. Open youtube.com to test the blocker.
 echo.
 echo Keep this window open until Chrome and the extension folder are open.
 echo.
+if "%TIMEBOX_INSTALLER_SKIP_PAUSE%"=="1" exit /b 0
 pause
+exit /b 0
+
+:open_chrome_extensions
+set "CHROME_EXE=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
+if exist "%CHROME_EXE%" (
+  start "" "%CHROME_EXE%" "chrome://extensions"
+  exit /b 0
+)
+
+set "CHROME_EXE=%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"
+if exist "%CHROME_EXE%" (
+  start "" "%CHROME_EXE%" "chrome://extensions"
+  exit /b 0
+)
+
+start "" "chrome://extensions"
+exit /b 0
