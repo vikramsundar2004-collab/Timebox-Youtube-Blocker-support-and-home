@@ -2,7 +2,7 @@
 setlocal
 title Install Timebox YouTube Blocker
 
-set "TIMEBOX_ZIP_URL=https://timebox-youtube-blocker-support.onrender.com/downloads/timebox-youtube-blocker.zip"
+set "TIMEBOX_ZIP_URL=https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/timebox-youtube-blocker.zip"
 set "TIMEBOX_FALLBACK_ZIP_URL=https://raw.githubusercontent.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home/main/site/downloads/timebox-youtube-blocker.zip"
 set "TIMEBOX_INSTALL_ROOT=%LOCALAPPDATA%\TimeboxYouTubeBlocker"
 set "TIMEBOX_ZIP_PATH=%TEMP%\timebox-youtube-blocker.zip"

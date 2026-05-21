@@ -526,6 +526,14 @@ h3 {
   word-break: break-word;
 }
 
+.print-note {
+  margin-top: 0.22in;
+  padding: 0.14in;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
 @media (max-width: 940px) {
   .site-header {
     align-items: flex-start;

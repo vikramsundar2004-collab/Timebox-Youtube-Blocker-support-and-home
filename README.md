@@ -2,7 +2,7 @@
 
 This repository hosts the public download and support site for Timebox YouTube Blocker.
 
-The site is a static Render deployment. Visitors can:
+Visitors can:
 
 - Download the Windows installer ZIP.
 - Download the extension ZIP manually.
@@ -12,13 +12,17 @@ The site is a static Render deployment. Visitors can:
 
 ## Public URL
 
-The Render service is configured for this URL:
+Use this public GitHub page for the QR code and class demo:
 
 ```text
-https://timebox-youtube-blocker-support.onrender.com/
+https://github.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-home
 ```
 
-The QR assets in `site/assets` point to that URL. If you rename the Render service and get a different `onrender.com` URL, regenerate the QR code and update the URL in `site/print-qr.html`.
+The QR assets in `site/assets` point to that public GitHub page because the Render URL is not required for the class demo.
+
+## iPhone support
+
+Chrome on iPhone can open the download page, but it cannot run Chrome extensions. Install Timebox YouTube Blocker on desktop Chrome for Windows, macOS, ChromeOS, or another desktop Chromium browser.
 
 ## Direct downloads
 
@@ -70,10 +74,6 @@ https://github.com/vikramsundar2004-collab/Timebox-Youtube-Blocker-support-and-h
 
 4. Render reads `render.yaml` from the repo root.
 5. Apply the Blueprint.
-6. After the deploy is live, open:
-
-```text
-https://timebox-youtube-blocker-support.onrender.com/
-```
+6. After the deploy is live, copy the URL Render gives you.
 
 There are no environment variables, databases, build artifacts, or server processes. Render serves the contents of `site/`.
