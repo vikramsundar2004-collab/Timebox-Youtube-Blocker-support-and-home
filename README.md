@@ -5,7 +5,7 @@ Static support website for Timebox YouTube Blocker.
 ## Pages
 
 - `/` - Product home and install help
-- `/download.html` - Direct extension ZIP download and install steps
+- `/download.html` - Direct extension download, Windows helper, and install steps
 - `/support.html` - Customer support and troubleshooting
 - `/privacy.html` - Privacy policy for the Chrome Web Store listing
 
